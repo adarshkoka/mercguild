@@ -64,6 +64,8 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
 		contentPane.addKeyListener(input);
 		contentPane.addMouseListener(input);
 		contentPane.addMouseMotionListener(input);
+		contentPane.setFocusable(true);
+		contentPane.requestFocus();
 		
 		timer.start();
 		setVisible(true);

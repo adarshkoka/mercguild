@@ -2,11 +2,14 @@ package frame.screen;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
 
 import frame.MainFrame;
 import frame.animation.AnimationManager;
 import frame.components.CButtonManager;
 import game.GameManager;
+import input.Input;
 
 public class GameScreen extends Screen {
 	
@@ -18,6 +21,8 @@ public class GameScreen extends Screen {
 	}
 	
 	public void updateScreen() {
+		if (Input.getKeys()[KeyEvent.VK_ESCAPE])
+			MainFrame.getMainFrame().dispatchEvent(new WindowEvent(MainFrame.getMainFrame(), WindowEvent.WINDOW_CLOSING));
 		gm.update();
 	}
 	
