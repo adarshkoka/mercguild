@@ -37,8 +37,12 @@ public class AnimationManager {
 	}
 	
 	public static void updateAnimations() {
-		for (int i = 0; i < anims.size(); i++) 
-			anims.get(i).updateAnimation();
+		for (int i = 0; i < anims.size(); i++) {
+			if (anims.get(i).canRemove())
+				anims.remove(i--);
+			else
+				anims.get(i).updateAnimation();
+		}
 	}
 	
 	

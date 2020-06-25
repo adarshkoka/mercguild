@@ -10,6 +10,8 @@ public abstract class Screen {
 		this.screenName = screenName;
 	}
 	
+	public void updateScreen() {}
+	
 	public void onScreenOpen() {}
 	
 	public void onScreenClose() {}

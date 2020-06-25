@@ -19,7 +19,15 @@ public class MenuScreen extends Screen {
 			{
 				@Override
 				public void onRelease() {
-					System.out.println("HI");
+					if (waitingForBtnPress) {
+						waitingForBtnPress = false;
+						AnimationManager.addAnimations(
+							AnimationManager.getCircleTransition(Color.white, 300)
+								.setOnEnd(() -> {
+									ScreenManager.switchToScreen("GameScreen");
+								}).startAnimation()
+						);
+					}
 				}
 			}
 			.setColors(Color.gray, Color.gray, Color.gray, Color.white)

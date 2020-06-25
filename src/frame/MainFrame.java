@@ -136,6 +136,7 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		scrm.getCurrentScreen().updateScreen();
 		CButtonManager.updateButtonPresses();
 		AnimationManager.updateAnimations();
 		if (fr != null)

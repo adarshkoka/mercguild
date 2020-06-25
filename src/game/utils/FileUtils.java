@@ -1,6 +1,7 @@
 package game.utils;
 
 import java.io.File;
+import java.io.InputStream;
 
 public class FileUtils {
 	
@@ -16,5 +17,12 @@ public class FileUtils {
 		if (!fl.exists())
 			fl.mkdirs();
 		return fl;
+	}
+	
+	
+	private static FileUtils fu = new FileUtils();
+	public static InputStream getResource(String path) {
+//		System.out.println(fu.getClass().getClassLoader().getResourceAsStream("resources/" + path));
+		return fu.getClass().getClassLoader().getResourceAsStream("resources/" + path);
 	}
 }

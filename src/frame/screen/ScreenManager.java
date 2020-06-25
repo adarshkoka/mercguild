@@ -7,12 +7,16 @@ import frame.MainFrame;
 public class ScreenManager {
 	
 	private static ScreenManager scrm;
-	private Screen[] screens = { new MenuScreen(), new OptionsScreen() };
+	private Screen[] screens = { new MenuScreen(), new OptionsScreen(), new GameScreen() };
 	private int currentScreen = 0;
 	
 	public ScreenManager() {
 		scrm = this;
 		screens[currentScreen].onScreenOpen();
+	}
+	
+	public Screen getCurrentScreen() {
+		return screens[currentScreen];
 	}
 	
 	public void drawScreen() {

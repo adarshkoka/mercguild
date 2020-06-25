@@ -19,7 +19,7 @@ public class Animation {
 	
 	private long duration;
 	
-	private boolean ranOnEnd;
+	private boolean ranOnEnd, removeOnEnd;
 	private Runnable onEnd;
 	
 	public Animation() {
@@ -115,6 +115,10 @@ public class Animation {
 		this.onEnd = onEnd;
 		return this;
 	}
+	public Animation setRemoveOnEnd(boolean removeOnEnd) {
+		this.removeOnEnd = removeOnEnd;
+		return this;
+	}
 	
 	public void onEnd() {
 		if (onEnd != null)
@@ -131,6 +135,9 @@ public class Animation {
 	
 	public boolean isDone() {
 		return timer.getElapsedTimeMillis() >= duration;
+	}
+	public boolean canRemove() {
+		return isDone() && ranOnEnd && removeOnEnd;
 	}
 	
 	public void updateAnimation() {
