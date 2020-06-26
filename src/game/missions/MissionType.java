@@ -3,11 +3,13 @@ package game.missions;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class MissionType {
 	
 	private String shortName, displayName, description;
 	
+	private Map<String, Integer> statInfluence;
 	
 	private List<Map<String, Integer>> enemyStats;
 	private List<String> enemyPositions;
@@ -19,6 +21,7 @@ public class MissionType {
 		this.shortName = shortName;
 		this.displayName = displayName;
 		this.description = description;
+		statInfluence = new TreeMap<>();
 		enemyStats = new ArrayList<>();
 		enemyPositions = new ArrayList<>();
 		futureMissionTypes = new ArrayList<>();

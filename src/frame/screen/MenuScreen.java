@@ -44,7 +44,7 @@ public class MenuScreen extends Screen {
 						AnimationManager.addAnimations(
 							AnimationManager.getCircleTransition(Color.white, 300)
 								.setOnEnd(() -> {
-									GameScreen.setGameLoadFile("save88131.sav");
+									GameScreen.setGameLoadFile("save39561.sav");
 									ScreenManager.switchToScreen("GameScreen");
 								}).startAnimation()
 						);

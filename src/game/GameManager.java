@@ -54,9 +54,8 @@ public class GameManager {
 					(int) (Math.random() * numFemaleNames + numMaleNames));
 			Merc m = new Merc(fn, lastNames.get((int) (Math.random() * numFemaleNames)), gender, (int) (Math.random() * 50 + 15));
 			m.addRandomBaseStats();
-			if (i == 0) {
+			if (Math.random() < .3)
 				m.addMercModifier(new MercModifier("Sword", "A Mighty Sword").addStatModifier("Attack", 12));
-			}
 		}
 	}
 	
