@@ -155,6 +155,7 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
 
 	@Override
 	public void windowClosing(WindowEvent arg0) {
+		scrm.getCurrentScreen().onScreenClose();
 		saveSettings();
 	}
 

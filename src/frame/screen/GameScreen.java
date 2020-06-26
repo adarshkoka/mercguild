@@ -13,11 +13,15 @@ import input.Input;
 
 public class GameScreen extends Screen {
 	
+	private static String gameLoadFile = "";
+	public static void setGameLoadFile(String file) {
+		gameLoadFile = file;
+	}
+	
 	private GameManager gm;
 	
 	public GameScreen() {
 		super("GameScreen");
-		gm = new GameManager();
 	}
 	
 	public void updateScreen() {
@@ -31,12 +35,17 @@ public class GameScreen extends Screen {
 		CButtonManager.addButtons();
 		AnimationManager.clearAnimations();
 		AnimationManager.addAnimations(AnimationManager.getFadeInTransition(Color.white, 500).startAnimation());
+		if (gameLoadFile.equals(""))
+			gm = new GameManager();
+		else
+			gm = GameManager.loadGameState(gameLoadFile);
 	}
 	
 	@Override
 	public void onScreenClose() {
 		CButtonManager.clearButtons();
 		AnimationManager.clearAnimations();
+		gm.saveGameState();
 	}
 	
 	@Override
