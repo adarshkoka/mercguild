@@ -31,6 +31,10 @@ public class Merc {
 			stats.put(st, (int) (Math.random() * 400 + 300));
 	}
 	
+	public void addMercModifier(MercModifier mm) {
+		modifiers.add(mm);
+	}
+	
 	public String toString() {
 		StringBuilder stb = new StringBuilder(String.format("%s %s (%s - %d years old): ", firstName, lastName, gender, age));
 		stats.forEach((k, v) -> {stb.append("\n\t" + k + "=" + v); });

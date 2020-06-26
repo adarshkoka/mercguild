@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import game.mercs.Merc;
+import game.mercs.MercModifier;
 import game.utils.FileUtils;
 
 public class GameManager {
@@ -44,6 +45,9 @@ public class GameManager {
 					(int) (Math.random() * numFemaleNames + numMaleNames));
 			Merc m = new Merc(fn, lastNames.get((int) (Math.random() * numFemaleNames)), gender, (int) (Math.random() * 50 + 15));
 			m.addRandomBaseStats();
+			if (i == 0) {
+				m.addMercModifier(new MercModifier("Sword", "A Mighty Sword").addStatModifier("Attack", 12));
+			}
 		}
 	}
 	
