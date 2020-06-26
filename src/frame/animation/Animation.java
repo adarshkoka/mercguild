@@ -7,24 +7,56 @@ import java.awt.image.BufferedImage;
 import frame.utils.GTimer;
 import frame.utils.GUIUtils;
 
+/**
+ * Awesome Pawsome KeyFrame Animation Class. Specify the start and end configurations for an image.  
+ * @author Shanth
+ */
 public class Animation {
 	
+	/** Uniform transform BufferedImage that is transformed by the Animation class
+	 * @see BufferedImage
+	 */
 	private BufferedImage img;
 	
+	/** Start and ending positions for the center of the Animation. 
+	 * @see Point2D 
+	 */
 	private Point2D startPos, endPos;
+	/** Start and ending rotations for the Animation in radians. 
+	 */
 	private double startRot, endRot;
+	/** Start and ending sizes for the Animation. 
+	 */
 	private int startWidth, startHeight, endWidth, endHeight;
 	
+	/** Awesome custom timer object that can be paused/resumed in the middle of the Animation. 
+	 * @see GTimer
+	 */
 	private GTimer timer;
 	
+	/** Duration of the Animation. 
+	 */
 	private long duration;
 	
-	private boolean ranOnEnd, removeOnEnd;
+	/** Flag for whether the onEnd method has been run. 
+	 */
+	private boolean ranOnEnd;
+	
+	/** Flag for whether this animation should be removed from the AnimationManager once it finishes.  
+	 */
+	private boolean removeOnEnd;
+	
+	/** Optional Runnable task to be run at the end of the Animation.
+	 * @see Runnable 
+	 */
 	private Runnable onEnd;
 	
 	public Animation() {
 		timer = new GTimer();
 	}
+	
+	/** @param durationMillis The duration of the Animation in milliseconds
+	 */
 	public Animation(long durationMillis) {
 		timer = new GTimer();
 		this.duration = durationMillis;
@@ -120,6 +152,10 @@ public class Animation {
 		return this;
 	}
 	
+	/** Task to be run at the end of an Animation. 
+	 * Automatically runs the onEnd Runnable. 
+	 * @see Runnable
+	 */
 	public void onEnd() {
 		if (onEnd != null)
 			onEnd.run();
@@ -128,6 +164,10 @@ public class Animation {
 	public boolean hasStarted() {
 		return timer.getStartTimeMillis() != 0;
 	}
+	
+	/** Start the Animation
+	 * @return Animation
+	 */
 	public Animation startAnimation() {
 		timer.start();
 		return this;
@@ -156,9 +196,16 @@ public class Animation {
 		return timer;
 	}
 	
+	/** Find the exact linear 0 to 1 transformation multiplier 
+	 * @return double
+	 */
 	public double getLinearStep() {
 		return Math.min(1, 1.0 * timer.getElapsedTimeMillis() / duration);
 	}
+	
+	/** Find the exact smooth 0 to 1 transformation multiplier 
+	 * @return double
+	 */
 	public double getSmoothStep() {
 		double x = getLinearStep();
 		return x * x * (3 - 2 * x);

@@ -1,3 +1,8 @@
+assassinate
+Assassination
+
+
+
 Fight 70 10 0 5 15 
 Pickpocket 0 0 20 60 20
 Siege 25 40 10 5 20

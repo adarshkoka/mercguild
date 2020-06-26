@@ -24,6 +24,12 @@ import frame.screen.ScreenManager;
 import game.utils.FileUtils;
 import input.Input;
 
+/**
+ * Represents the MainFrame window. 
+ * Implements an ActionListener method that is called every time step
+ * Implements a WindowListener to run events on Window Close
+ * @author Shanth
+ */
 public class MainFrame extends JFrame implements ActionListener, WindowListener {
 	
 	private static final long serialVersionUID = 4721462583866967680L;
@@ -32,15 +38,27 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
 	
 	private static MainFrame fr;
 	
+	/** Input object to interact with user inputs
+	 * @see Input
+	 */
 	private static Input input = new Input();
 	
+	/** Swing Timer to repeat ActionListener task every time step
+	 * @see Timer
+	 */
 	private final Timer timer = new Timer(16, this);
 	
 	public static final int FRAME_WIDTH = 3200, FRAME_HEIGHT = 1800;
 	private static BufferedImage frame = new BufferedImage(FRAME_WIDTH, FRAME_HEIGHT, BufferedImage.TYPE_INT_ARGB);
 	
+	/** Screen Manager for this MainFrame. Allows for switching between Screens. 
+	 * @see ScreenManager
+	 */
 	private ScreenManager scrm = new ScreenManager();
 	
+	/** JPanel Content Pane with altered paintComponent to display our own frames
+	 * @see JPanel
+	 */
 	private JPanel contentPane = new JPanel() {
 		private static final long serialVersionUID = 1L;
 		public void paintComponent(Graphics gr) {
@@ -75,6 +93,8 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
 		loadSettings();
 	}
 	
+	/** Load any settings previously saved to settings.ini in the AppData directory
+	 */
 	private void loadSettings() {
 		File settingsFile = new File(FileUtils.getAppDataPath().getAbsolutePath() + "/settings.ini");
 		if (!settingsFile.isFile())
@@ -87,6 +107,8 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
 				setWindowed();
 		} catch (Exception e) {}
 	}
+	/** Save window settings to settings.ini in the AppData directory. Runs on Window Closing Event. 
+	 */
 	private void saveSettings() {
 		File settingsFile = new File(FileUtils.getAppDataPath().getAbsolutePath() + "/settings.ini");
 		try (PrintWriter pw = new PrintWriter(settingsFile)) {
@@ -129,6 +151,8 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
 		}
 	}
 	
+	/** @return A Graphics2D object for the BufferedImage frame
+	 */
 	public static Graphics2D getFrameGraphics() {
 		Graphics2D g = frame.createGraphics();
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -136,6 +160,8 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
 		return g;
 	}
 	
+	/** ActionListener task called every time step
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		scrm.getCurrentScreen().updateScreen();
