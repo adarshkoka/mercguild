@@ -173,13 +173,20 @@ public class Animation {
 		return this;
 	}
 	
+	/** @return Whether the animation has completed its full duration
+	 */
 	public boolean isDone() {
 		return timer.getElapsedTimeMillis() >= duration;
 	}
+	/** @return Whether the animation can be removed from the AnimationManager, removeOnEnd must be flagged
+	 * @see AnimationManager
+	 */
 	public boolean canRemove() {
 		return isDone() && ranOnEnd && removeOnEnd;
 	}
 	
+	/** Updates the animation, mainly checking if the onEnd task needs to be run
+	 */
 	public void updateAnimation() {
 		if (isDone() && !ranOnEnd) {
 			onEnd();
@@ -211,6 +218,9 @@ public class Animation {
 		return x * x * (3 - 2 * x);
 	}
 	
+	/** Uses the assigned transformations to draw the provided image, can be overriden
+	 * @param gr Graphics2D object, is copied upon method call before animation translations
+	 */
 	public void drawAnim(Graphics2D gr) {
 		Graphics2D g = (Graphics2D) gr.create();
 		double mul = getSmoothStep();

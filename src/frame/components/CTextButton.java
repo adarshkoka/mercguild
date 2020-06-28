@@ -11,10 +11,17 @@ import java.awt.geom.RoundRectangle2D;
 
 import frame.utils.GUIUtils;
 
+/** Special CButton with text and gradient colors
+ * @author Shanth 
+ */
 public class CTextButton extends CButton {
 	
 	private Font font;
 	private String text;
+	/**
+	 * c1: The inner gradient
+	 * c2: The outer gradient
+	 */
 	private Color c1 = Color.red.brighter(), c2 = Color.red.darker(), borderColor = Color.black, textColor = Color.white;
 	private int shadowWidth = 15;
 	

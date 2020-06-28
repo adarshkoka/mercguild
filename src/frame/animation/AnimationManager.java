@@ -36,6 +36,9 @@ public class AnimationManager {
 			anims.get(i).drawAnim(g);
 	}
 	
+	/** Removes any animations that can be removed based on Animation.canRemove()
+	 * @see Animation
+	 */
 	public static void updateAnimations() {
 		for (int i = 0; i < anims.size(); i++) {
 			if (anims.get(i).canRemove())
@@ -45,7 +48,10 @@ public class AnimationManager {
 		}
 	}
 	
-	
+	/** @param color Color of the circle that gets bigger from the center
+	 * @param durationMillis Duration of the animation in milliseconds
+	 * @return Awesome circle transition animation with an overriden draw method
+	 */
 	public static Animation getCircleTransition(final Color color, long durationMillis) {
 		return new Animation(durationMillis) {
 			public void drawAnim(Graphics2D gr) {
@@ -63,6 +69,10 @@ public class AnimationManager {
 		};
 	}
 	
+	/** @param fadeColor Color of the screen at the start of the animation
+	 * @param durationMillis Duration of the animation in milliseconds
+	 * @return Awesome fade in transition animation with an overriden draw method
+	 */
 	public static Animation getFadeInTransition(final Color fadeColor, long durationMillis) {
 		return new Animation(durationMillis) {
 			public void drawAnim(Graphics2D gr) {
